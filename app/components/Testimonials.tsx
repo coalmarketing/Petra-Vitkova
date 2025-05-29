@@ -1,72 +1,55 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import Image from 'next/image';
+
+interface TestimonialProps {
+  name: string;
+  text: string;
+  imgUrl: string;
+  imgAlt: string;
+}
+
+const Testimonial = ({ name, text, imgUrl, imgAlt }: TestimonialProps) => (
+  <div className="card testimonial-card text-left p-6 md:p-8">
+    <div className="flex items-start">
+      <img 
+        src={imgUrl} 
+        alt={imgAlt} 
+        className="w-14 h-14 rounded-full mr-4 object-cover flex-shrink-0"
+      />
+      <div>
+        <p className="text-slate-600 leading-relaxed">{text}</p>
+        <p className="mt-4 font-semibold text-slate-700">- {name}</p>
+      </div>
+    </div>
+  </div>
+);
 
 const testimonials = [
   {
-    name: 'Jana Nováková',
-    role: 'Majitelka firmy',
-    content: 'Petra mi pomohla s financováním mé firmy. Její profesionální přístup a znalosti mi pomohly najít nejlepší řešení.',
-    image: '/img/testimonial1.jpg'
+    text: 'Petra Vítková je ženou na správném místě. Velice rychle mi s přítelem pomohla na trhu všech možných bank získat tu nejvýhodnější hypotéku ke koupi našeho vysněného bytu. Od té doby s Petrou spolupracujeme dál.',
+    name: 'Jan Novák',
   },
   {
-    name: 'Petr Svoboda',
-    role: 'Klient',
-    content: 'Díky Petře jsem získal výhodnou hypotéku a ušetřil jsem spoustu peněz. Její poradenství bylo opravdu na úrovni.',
-    image: '/img/testimonial2.jpg'
-  }
+    text: 'Ve světě přesyceného trhu bank a mladých, nezkušených \'poradců\' je Petra světlem na konci tunelu. Díky svým letitým zkušenostem získala okamžitě mou důvěru a za nejvýhodnějších podmínek jsem pojistil celou svou rodinu.',
+    name: 'Jan Novák',
+  },
 ];
 
 const Testimonials = () => {
   return (
-    <section className="py-16 sm:py-20 md:py-28 bg-white">
+    <section id="references" className="py-12 sm:py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#39536D] mb-4">
-            Reference
-          </h2>
-          <p className="text-lg text-[#6FA1D3] max-w-2xl mx-auto">
-            Co o mně říkají moji klienti
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
-          {testimonials.map((testimonial) => (
-            <motion.div
-              key={testimonial.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white rounded-xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="flex items-center mb-6">
-                <div className="w-16 h-16 relative rounded-full overflow-hidden mr-4">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-[#39536D]">
-                    {testimonial.name}
-                  </h3>
-                  <p className="text-[#6FA1D3]">
-                    {testimonial.role}
-                  </p>
-                </div>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2E3A4F] mb-2 uppercase tracking-wide text-center">Reference</h2>
+        <p className="text-base sm:text-lg md:text-xl text-[#7E8CA0] mb-8 sm:mb-12 md:mb-16 font-semibold tracking-wide uppercase text-center">Péče o vaše finance, bezpečně a s důvěrou</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 max-w-6xl mx-auto">
+          {testimonials.map((t, idx) => (
+            <div key={idx} className="flex flex-col items-start text-left px-2 sm:px-4 md:px-8">
+              <img src="/img/uvozovky.svg" alt="Uvozovky" className="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 mb-2" />
+              <p className="text-lg sm:text-xl md:text-2xl text-black mb-6 sm:mb-8">{t.text}</p>
+              <span className="block text-lg sm:text-xl md:text-2xl font-bold text-[#2E3A4F] mt-2">- {t.name}</span>
+              <div className="w-full flex justify-end mt-[-30px] sm:mt-[-35px] md:mt-[-40px]">
+                <img src="/img/uvozovky.svg" alt="Uvozovky" className="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rotate-180" />
               </div>
-              <p className="text-[#39536D]">
-                {testimonial.content}
-              </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
