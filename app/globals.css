@@ -31,6 +31,12 @@ html {
   box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+  html {
+    padding: 0.5rem !important;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
