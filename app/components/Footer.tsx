@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useState } from 'react';
 import Image from 'next/image';
 import { PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 
 const Footer = () => {
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentYear] = useState(new Date().getFullYear());
 
   return (
     <div>
@@ -15,9 +14,11 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 sm:gap-10 md:gap-0">
             {/* Logo a jméno vlevo */}
             <div className="flex flex-col items-center md:items-start md:w-1/3">
-              <img 
+              <Image 
                 src="/img/logo2_white.png" 
                 alt="Logo Petra Vítková" 
+                width={256}
+                height={256}
                 className="h-48 sm:h-56 md:h-64 w-auto mb-2"
               />
             </div>

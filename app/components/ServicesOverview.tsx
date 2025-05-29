@@ -13,7 +13,7 @@ const ServicesOverview = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-8 sm:mb-12 uppercase tracking-wide text-[#2E3A4F]">KOMPLEXNÍ PORADENSTVÍ</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 justify-items-center">
-          {services.map((service, idx) => (
+          {services.map((service) => (
             <div
               key={service.label}
               className="flex flex-col items-center justify-center bg-[#7EB2DF] rounded-sm py-4 sm:py-6 px-3 sm:px-4 w-full max-w-xs"
