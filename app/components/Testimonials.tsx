@@ -3,13 +3,13 @@ import Image from 'next/image';
 const testimonials = [
   {
     id: 1,
-    text: 'Petra Vítková je ženou na správném místě. Velice rychle mi s přítelem pomohla na trhu všech možných bank získat tu nejvýhodnější hypotéku ke koupi našeho vysněného bytu. Od té doby s Petrou spolupracujeme dál.',
-    name: 'Jan Novák',
+    text: 'Petra Vítková mi pomohla vyřešit řadu pojištění. Ta nejdůležitější, která přinesla svůj efekt, byla pojistka na blbost v rámci zacházení s drahými přístroji a výrobky v práci. Nejlepší na jednání s paní Vítkovou je to, že pro vás je ochotna udělat pojistky, hypotéky, nebo třeba jen nezávazně poradit, prostě vše, i přes víkendy, kdykoliv. Nerad této dobrotivosti zneužívám, ale někdy si to krizová situace žádá. Takže jestli chcete co nejkvalitnější finanční poradenství, paní Vítkovou doporučuji všemi deseti.',
+    name: 'Filip Červinka, ředitel marketingu',
   },
   {
     id: 2,
-    text: 'Ve světě přesyceného trhu bank a mladých, nezkušených \'poradců\' je Petra světlem na konci tunelu. Díky svým letitým zkušenostem získala okamžitě mou důvěru a za nejvýhodnějších podmínek jsem pojistil celou svou rodinu.',
-    name: 'Jan Novák',
+    text: 'U paní Vítkové jsme poptávali hypotéku pro naší celou rodinu. Zaujala nás s manželem její rychlé, přátelské jednání, s průzkumem těch nejvýhodnějších nabídek. Vybrali jsme si tu i dle její rady nejvýhodnější. Od začátku bylo vidět, že jsme na dobré adrese a hypotékou na nový vysněný baráček naše spolupráce s paní Vítkovou rozhodně nekončí.',
+    name: 'Veronika Mátlová, podnikatelka',
   },
 ];
 
