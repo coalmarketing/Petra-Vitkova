@@ -8,7 +8,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          background: `linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.85) 100%), url('/img/Grafy.png') center/cover no-repeat`,
+          background: `linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.85) 100%), url('/img/Grafy.webp') center/cover no-repeat`,
         }}
         aria-hidden="true"
       />

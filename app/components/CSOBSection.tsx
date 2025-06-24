@@ -22,7 +22,7 @@ const CSOBSection = () => {
           <div className="md:w-1/2 flex justify-center px-2 sm:px-4 md:px-8">
             <div className="relative w-full max-w-md aspect-square">
               <Image
-                src="/img/tym.png"
+                src="/img/tym.webp"
                 alt="Logo ČSOB"
                 fill
                 className="object-contain"
