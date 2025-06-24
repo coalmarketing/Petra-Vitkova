@@ -1,15 +1,9 @@
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 export default function SuccessPage() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#6FA1D3] to-[#39536D] flex items-center justify-center px-4">
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-md w-full bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-2xl text-center"
-      >
+      <div className="max-w-md w-full bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-2xl text-center animate-fade-in">
         <div className="mb-6">
           <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
             <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,7 +25,7 @@ export default function SuccessPage() {
           </svg>
           Zpět na hlavní stránku
         </Link>
-      </motion.div>
+      </div>
     </div>
   );
 } 

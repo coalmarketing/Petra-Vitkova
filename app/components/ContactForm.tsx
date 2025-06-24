@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 
 const ContactForm = () => {
   const [formState, setFormState] = useState({
@@ -27,12 +26,7 @@ const ContactForm = () => {
   return (
     <section id="contact-form" className="py-16 sm:py-20 md:py-28 bg-gradient-to-r from-[#6FA1D3] to-[#39536D]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto bg-white/95 backdrop-blur-sm p-8 sm:p-10 md:p-14 rounded-2xl shadow-2xl text-center"
-        >
+        <div className="max-w-3xl mx-auto bg-white/95 backdrop-blur-sm p-8 sm:p-10 md:p-14 rounded-2xl shadow-2xl text-center animate-fade-in">
           <div className="mb-8">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#39536D] mb-4">Kontaktujte mě</h2>
             <p className="text-lg sm:text-xl text-[#6FA1D3] max-w-2xl mx-auto">
@@ -144,7 +138,7 @@ const ContactForm = () => {
               Zásadami cookies (EU)
             </a>
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
