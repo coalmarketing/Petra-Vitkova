@@ -14,6 +14,7 @@ module.exports = {
         'light-bg': '#F7F9FC',
       },
       fontFamily: {
+        'teachers': ["'Teachers'", 'sans-serif'],
         'inter': ['var(--font-inter)', 'sans-serif'],
         'glacial': ["'Glacial Indifference'", 'sans-serif'],
       },
