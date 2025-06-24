@@ -13,10 +13,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="cs" className="scroll-smooth">
-      <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet" />
-      </head>
       <body className="font-teachers antialiased bg-white text-slate-700">
         {children}
       </body>

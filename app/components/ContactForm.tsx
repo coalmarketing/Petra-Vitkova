@@ -11,6 +11,8 @@ const ContactForm = () => {
     message: ''
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,10 +26,34 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Formulář je pouze pro zobrazení, neodesílá data
-    alert('Formulář je pouze pro demonstraci. V produkční verzi by se zde odesílala data.');
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Netlify Forms automaticky zpracuje formulář díky data-netlify atributu
+      // Formulář se odešle na stejnou URL s POST metodou
+      const formData = new FormData(e.target as HTMLFormElement);
+      
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormState({ name: '', email: '', phone: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Chyba při odesílání:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,7 +72,42 @@ const ContactForm = () => {
             </p>
           </div>
           
-          <form onSubmit={handleSubmit} className="space-y-6 text-left">
+          {/* Success message */}
+          {submitStatus === 'success' && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg"
+            >
+              <p className="text-green-800 font-medium">
+                ✅ Děkujeme za vaši zprávu! Ozvu se vám do 24 hodin.
+              </p>
+            </motion.div>
+          )}
+
+          {/* Error message */}
+          {submitStatus === 'error' && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg"
+            >
+              <p className="text-red-800 font-medium">
+                ❌ Při odesílání došlo k chybě. Zkuste to prosím znovu nebo mě kontaktujte přímo na email.
+              </p>
+            </motion.div>
+          )}
+          
+          <form 
+            onSubmit={handleSubmit} 
+            className="space-y-6 text-left"
+            data-netlify="true"
+            name="contact"
+            method="POST"
+          >
+            {/* Hidden input pro Netlify */}
+            <input type="hidden" name="form-name" value="contact" />
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-[#39536D] mb-2">
@@ -121,12 +182,25 @@ const ContactForm = () => {
             <div className="text-center pt-4">
               <button 
                 type="submit" 
-                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#6FA1D3] to-[#39536D] rounded-lg shadow-lg hover:from-[#39536D] hover:to-[#6FA1D3] focus:outline-none focus:ring-2 focus:ring-[#6FA1D3] focus:ring-offset-2 transition-all duration-200 transform hover:-translate-y-0.5"
+                disabled={isSubmitting}
+                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#6FA1D3] to-[#39536D] rounded-lg shadow-lg hover:from-[#39536D] hover:to-[#6FA1D3] focus:outline-none focus:ring-2 focus:ring-[#6FA1D3] focus:ring-offset-2 transition-all duration-200 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Odeslat zprávu
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Odesílám...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Odeslat zprávu
+                  </>
+                )}
               </button>
             </div>
           </form>
