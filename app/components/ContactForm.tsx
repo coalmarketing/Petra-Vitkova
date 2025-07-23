@@ -56,7 +56,7 @@ const ContactForm = () => {
                   required 
                   value={formState.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-[#6FA1D3] focus:border-[#6FA1D3] text-base transition-all duration-200 border border-[#6FA1D3]/30 hover:border-[#6FA1D3]"
+                  className="w-full px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-[#6FA1D3] focus:border-[#6FA1D3] text-base text-black transition-all duration-200 border border-[#6FA1D3]/30 hover:border-[#6FA1D3]"
                   placeholder="Zadejte vaše jméno"
                 />
               </div>
@@ -72,7 +72,7 @@ const ContactForm = () => {
                   required 
                   value={formState.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-[#6FA1D3] focus:border-[#6FA1D3] text-base transition-all duration-200 border border-[#6FA1D3]/30 hover:border-[#6FA1D3]"
+                  className="w-full px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-[#6FA1D3] focus:border-[#6FA1D3] text-base text-black transition-all duration-200 border border-[#6FA1D3]/30 hover:border-[#6FA1D3]"
                   placeholder="vas@email.cz"
                 />
               </div>
@@ -88,7 +88,7 @@ const ContactForm = () => {
                 id="phone" 
                 value={formState.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-[#6FA1D3] focus:border-[#6FA1D3] text-base transition-all duration-200 border border-[#6FA1D3]/30 hover:border-[#6FA1D3]"
+                className="w-full px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-[#6FA1D3] focus:border-[#6FA1D3] text-base text-black transition-all duration-200 border border-[#6FA1D3]/30 hover:border-[#6FA1D3]"
                 placeholder="+420 XXX XXX XXX"
               />
               <p className="mt-2 text-sm text-[#6FA1D3] flex items-center">
@@ -110,7 +110,7 @@ const ContactForm = () => {
                 required 
                 value={formState.message}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-[#6FA1D3] focus:border-[#6FA1D3] text-base transition-all duration-200 border border-[#6FA1D3]/30 hover:border-[#6FA1D3]"
+                className="w-full px-4 py-3 rounded-lg shadow-sm focus:ring-2 focus:ring-[#6FA1D3] focus:border-[#6FA1D3] text-base text-black transition-all duration-200 border border-[#6FA1D3]/30 hover:border-[#6FA1D3]"
                 placeholder="Popište prosím, s čím vám mohu pomoci..."
               ></textarea>
             </div>
