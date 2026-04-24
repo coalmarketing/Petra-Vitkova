@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const ContactForm = () => {
+  const router = useRouter();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -10,6 +12,8 @@ const ContactForm = () => {
     message: ''
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -17,9 +21,30 @@ const ContactForm = () => {
       ...prev,
       [name]: value
     }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError(false);
+    try {
+      const res = await fetch('https://usebasin.com/f/ad21da203887', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState),
+      });
+      if (res.ok) {
+        router.push('/success');
+      } else {
+        setSubmitError(true);
+      }
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -42,11 +67,7 @@ const ContactForm = () => {
 
           <form
             className="space-y-6 text-left"
-            name="contact"
-            method="POST"
-            action="https://usebasin.com/f/ad21da203887"
-            data-basin-form 
-            data-basin-success-action="render"
+            onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -143,7 +164,8 @@ const ContactForm = () => {
             <div className="text-center pt-4">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#6FA1D3] to-[#39536D] rounded-lg shadow-lg hover:from-[#39536D] hover:to-[#6FA1D3] focus:outline-none focus:ring-2 focus:ring-[#6FA1D3] focus:ring-offset-2 transition-all duration-200 transform hover:-translate-y-0.5"
+                disabled={isSubmitting}
+                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-[#6FA1D3] to-[#39536D] rounded-lg shadow-lg hover:from-[#39536D] hover:to-[#6FA1D3] focus:outline-none focus:ring-2 focus:ring-[#6FA1D3] focus:ring-offset-2 transition-all duration-200 transform hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
               >
                 <svg
                   className="w-5 h-5 mr-2"
@@ -158,27 +180,16 @@ const ContactForm = () => {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                Odeslat zprávu
+                {isSubmitting ? 'Odesílám...' : 'Odeslat zprávu'}
               </button>
             </div>
           </form>
 
-          <div className="w-form-done" style={{ display: 'none' }}>
-            <p>Vaše zpráva byla úspěšně odeslána a potvrzujeme její přijetí.</p>
-            <p>
-              Ozvu se vám nejpozději do 24 hodin na zadaný e-mail nebo telefonní
-              číslo.
+          {submitError && (
+            <p className="mt-4 text-sm text-red-600 text-center">
+              Něco se pokazilo. Zkuste to prosím znovu.
             </p>
-            <p>
-              Pokud by vám potvrzení nepřišlo do e-mailu, zkontrolujte prosím
-              složku spam nebo mě kontaktujte přímo na{" "}
-              <a href="mailto:petra@vitkova.cz">petra@vitkova.cz</a>.
-            </p>
-          </div>
-
-          <div className="w-form-fail" style={{ display: 'none' }}>
-            <p>Něco se pokazilo. Zkuste to prosím znovu.</p>
-          </div>
+          )}
 
           <p className="mt-8 text-sm text-[#39536D] text-center">
             Odesláním formuláře vyjadřujete souhlas s{" "}
