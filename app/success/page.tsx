@@ -20,7 +20,7 @@ export default function SuccessPage() {
             Ozvu se vám nejpozději do 24 hodin na zadaný e-mail nebo telefonní číslo.
           </p>
           <p className="text-[#39536D] text-sm mb-4">
-            Pokud by vám potvrzení nepřišlo do e-mailu, zkontrolujte prosím složku spam nebo mě kontaktujte přímo na <a href="mailto:petra@vitkova.cz" className="text-[#6FA1D3] underline hover:text-[#39536D]">petra@vitkova.cz</a>.
+            Pokud by vám potvrzení nepřišlo do e-mailu, zkontrolujte prosím složku spam nebo mě kontaktujte přímo na <a href="mailto:petravitkova43@seznam.cz" className="text-[#6FA1D3] underline hover:text-[#39536D]">petra@vitkova.cz</a>.
           </p>
         </div>
         <Link 
