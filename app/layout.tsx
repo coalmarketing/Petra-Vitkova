@@ -107,6 +107,7 @@ export default function RootLayout({
     <html lang="cs" className="scroll-smooth">
       <head>
         <JsonLd />
+        <script src="https://js.usebasin.com/v2.11.0.min.js" defer></script>
       </head>
       <body className="font-teachers antialiased bg-white text-slate-700">
         {children}
